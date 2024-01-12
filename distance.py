@@ -10,14 +10,15 @@ class Millimeter:
 
     def __init__(self, value: Any) -> None:
 
-        if type(value) == int:
-            self._value = float(value)
-        elif type(value) == float:
-            self._value = value
-        elif issubclass(value, Millimeter):
-            self._value = float(value.as_millimeters()/self._ratio)
-        else:
-            raise 'not a suitable data type'
+        try:
+            if type(value) == int:
+                self._value = float(value)
+            elif type(value) == float:
+                self._value = value
+            elif issubclass(value, Millimeter):
+                self._value = float(value.as_millimeters()/self._ratio)
+        except TypeError:
+            print('enter valid dictionary')
 
     def __repr__(self):
         return (f'class name: {__name__}, '
