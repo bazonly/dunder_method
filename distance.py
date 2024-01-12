@@ -16,6 +16,8 @@ class Millimeter:
             self._value = value
         elif issubclass(value, Millimeter):
             self._value = float(value.as_millimeters()/self._ratio)
+        else:
+            raise 'not a suitable data type'
 
     def __repr__(self):
         return (f'class name: {__name__}, '
