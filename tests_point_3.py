@@ -20,3 +20,9 @@ def test_truediv_method():
     left = Meter(38.07)
     right = Millimeter(44.74)
     assert (left / right).as_millimeters() == 850916.4059, 'Метод __mul__ реализован не корректно'
+
+
+test_add_method()
+test_sub_method()
+test_mul_method()
+test_truediv_method()
