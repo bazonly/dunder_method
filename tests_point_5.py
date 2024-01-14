@@ -1,6 +1,5 @@
 
 from distance import Millimeter, Centimeter, Meter, Inch
-
 import random
 
 def test_int_value_method():
@@ -20,3 +19,9 @@ def test_float_value_method():
 def test_int_type_method():
     instance = Inch(43.63)
     assert type(float(instance)) is float
+
+
+test_int_value_method()
+test_int_type_method()
+test_float_value_method()
+test_int_type_method()
