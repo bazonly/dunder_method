@@ -8,23 +8,16 @@ class Millimeter:
     _ratio = 1 # Отношение определяемой еденицы измерения к миллиметрам
     _value: float = 0
 
-    def __init__(self, value: Any) -> None:
-
+    def __init__(self, value) -> None:
         try:
-            if type(value) == int:
+            if isinstance(value, (int, float)):
                 self._value = float(value)
-            elif type(value) == float:
-                self._value = value
-            elif issubclass(value, Millimeter):
-                self._value = float(value.as_millimeters()/self._ratio)
+            else:
+                self._value = float(value.as_millimeters() / self._ratio)
         except TypeError:
             print('enter valid dictionary')
-
     def __repr__(self):
-        return (f'class name: {__name__}, '
-                f'label: {self._label}, '
-                f'ratio: {self._ratio}'
-                f'value: {self._value}')
+        return f'{self.__class__.__name__}(value={self._value})'
 
     def __hash__(self):
         return hash(self.as_millimeters())
@@ -37,43 +30,43 @@ class Millimeter:
         """
         return round(self._value * self._ratio, 5)
 
-    def __add__(self, other):
-        return self._value + other._value
+    def __add__(self, other)-> Any:
+        return type(self)((self.as_millimeters() / self._ratio) + (other.as_millimeters() / self._ratio))
 
-    def __sub__(self, other):
-        return self._value - other._value
+    def __sub__(self, other)-> Any:
+        return type(self)((self.as_millimeters() / self._ratio) - (other.as_millimeters() / self._ratio))
 
-    def __mul__(self, other):
-        return self._value * other._value
+    def __mul__(self, other)-> Any:
+        return type(self)((self.as_millimeters() / self._ratio) * (other.as_millimeters() / self._ratio))
 
-    def __truediv__(self, other):
+    def __truediv__(self, other)-> Any:
         if other._value == 0:
             raise 'division by zero is not possible'
         else:
-            return self._value / other._value
+            return type(self)((self.as_millimeters() / self._ratio) / (other.as_millimeters() / self._ratio))
 
-    def __eq__(self, other):
-        return self._value == other._value
+    def __eq__(self, other)-> Any:
+        return hash(self) == hash(other)
 
-    def __lt__(self, other):
-        return self._value < other._value
+    def __lt__(self, other)-> Any:
+        return self.as_millimeters() < other.as_millimeters()
 
-    def __int__(self):
+    def __int__(self)-> Any:
         return int(self.as_millimeters())
 
-    def __float__(self):
+    def __float__(self)-> Any:
         return float(self.as_millimeters())
 
 class Centimeter(Millimeter):
-    label = 'см'
-    ratio = 10
+    _label = 'см'
+    _ratio = 10
 
 
 class Meter(Millimeter):
-    label = 'метр'
-    ratio = 1000
+    _label = 'метр'
+    _ratio = 1000
 
 
 class Inch(Millimeter):
-    label = 'дюйм'
-    ratio = 25.4
+    _label = 'дюйм'
+    _ratio = 25.4
