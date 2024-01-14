@@ -28,3 +28,14 @@ def test_convert_centimeters_to_inches():
 
 def test_convert_meters_to_inches():
     assert Inch(Meter(20.58)).as_millimeters() == 20580, conversion_err
+
+
+
+test_value_type()
+test_init_millimeter()
+test_convert_millimeters_to_meters()
+test_convert_centimeters_to_meters()
+test_convert_inches_to_meters()
+test_convert_millimeters_to_inches()
+test_convert_centimeters_to_inches()
+test_convert_meters_to_inches()
