@@ -18,3 +18,9 @@ def test_lt_method():
 def test_ge_method():
     left = Meter(57.97)
     assert not (left.__ge__(left) is NotImplemented), 'Метод __ge__ не реализован'
+
+
+test_hash_method()
+test_eq_method()
+test_lt_method()
+test_ge_method()
